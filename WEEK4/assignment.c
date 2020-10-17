@@ -21,10 +21,11 @@ int main(){
     for (int i=0; i<HT ; i++) {   // filling the 2D char array
         maze[i]=&mazeStr[i*WD];
     }
-    solveMaze(maze, HT, WD, 0, 0);
-    
-    printMaze(maze, HT, WD);
-   
+    if (solveMaze(maze, HT, WD, 0, 0))
+        printMaze(maze, HT, WD);
+    else
+        printf("No solution\n");
+
     return 0;
 }
 
@@ -32,15 +33,15 @@ int main(){
 int solveMaze(char **maze, const int HT, const int WD, int y, int x){
     if (maze[y][x] == '*')
         return 1;
-    if (y>=0 && y<HT && x>=0 && maze[y][x]==' '){
+    if (y>=0 && y<HT && x>=0 && x<WD && maze[y][x]==' '){
         maze[y][x] = '.';
-        if (solveMaze(maze, HT, WD, y+1, x) == 1)
+        if (y+1<HT && solveMaze(maze, HT, WD, y+1, x) == 1)
             return 1;
-        if (solveMaze(maze, HT, WD, y, x+1) == 1)
+        if (x+1<WD && solveMaze(maze, HT, WD, y, x+1) == 1)
             return 1;
-        if (solveMaze(maze, HT, WD, y-1, x) == 1)
+        if (y-1>=0 && solveMaze(maze, HT, WD, y-1, x) == 1)
             return 1;
-        if (solveMaze(maze, HT, WD, y, x-1) == 1)
+        if (x-1>=0 && solveMaze(maze, HT, WD, y, x-1) == 1)
             return 1;
         maze[y][x] = '#';
             return 0;
@@ -63,4 +64,3 @@ void printMaze(char **maze, const int HT, const int WD){
         printf("%c\n",maze[i][WD-1]);
     }
 }
-                                   
