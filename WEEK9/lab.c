@@ -21,7 +21,7 @@ void function(char *source, char *integer, char *nonInteger)
 
 
 int main(){
-	char source[]="abc123 \{def99";
+	char source[]="abc123 [{def99";
 	char integers[256];
 	char nonIntegers[256];
 
