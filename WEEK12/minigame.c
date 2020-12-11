@@ -90,6 +90,10 @@ int main(int argc, char **argv){
         exit(1);
     }
     FILE* infile = fopen(argv[1], "r");
+    if (infile == NULL) {
+        printf("Cannot open a file\n");
+        exit(2);
+    }
     char buf[BUF_SIZE];
     buf[BUF_SIZE-1] = '\0';
     size_t buf_size = sizeof(buf);
