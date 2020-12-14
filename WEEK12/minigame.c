@@ -30,7 +30,7 @@ void win_or_not(bool win){
     if (win == 1)
         printf("correct, here's how you did:\n");
     else
-        printf("incorrect, here's how you did\n");
+        printf("incorrect, here's how you did:\n");
 }
 
 void check(char *try, char *password, int length){
@@ -67,18 +67,18 @@ void asking(char *password, int length, int tries){
             if (k=4)
                 return;}
         check(try, password, length);
+        tries--;
+        if (tries == 0){
+            printf("game over.\n");
+            return;
+        }
         if (win == 1){
-            printf("you win\n");
+            printf("you win.\n");
             return;
         }
         else{
             win=1;
-            printf("try again\n");
-        }
-        tries--;
-        if (tries == 0){
-            printf("game over\n");
-            return;
+            printf("try again.\n");
         }
         free(try);
     }
